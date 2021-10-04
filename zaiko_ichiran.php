@@ -19,6 +19,7 @@ if (/* ②の処理を書く */){
 }
 
 //⑤データベースへ接続し、接続情報を変数に保存する
+$pdo = new PDO($dsn, $username, $password, $driver_options);
 
 //⑥データベースで使用する文字コードを「UTF8」にする
 
@@ -86,7 +87,7 @@ if (/* ②の処理を書く */){
 
 							echo "<tr id='book'>";
 							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
-							echo "<td id='id'>/* ⑬IDを表示する */</td>";
+							echo "<td id='id'><name></td>";
 							echo "<td id='title'>/* ⑭titleを表示する */</td>";
 							echo "<td id='author'>/* ⑮authorを表示する */</td>";
 							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
