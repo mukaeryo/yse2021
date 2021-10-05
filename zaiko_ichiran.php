@@ -87,7 +87,7 @@ $pdo = new PDO($dsn, $username, $password, $driver_options);
 
 							echo "<tr id='book'>";
 							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
-							echo "<td id='id'>ID</td>";
+							echo "<td id='id'>{$result['ID']}</td>";
 							echo "<td id='title'>/* ⑭titleを表示する */</td>";
 							echo "<td id='author'>/* ⑮authorを表示する */</td>";
 							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
