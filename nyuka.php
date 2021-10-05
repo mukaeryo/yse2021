@@ -26,8 +26,10 @@ if (/* ③の処理を書く */){
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
+$pdo = new PDO($dsn, $username, $password, $driver_options);
 
 //⑦データベースで使用する文字コードを「UTF8」にする
+$str = mb_convert_encoding($str, "UTF-8", "auto");
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
 if(/* ⑧の処理を行う */){
