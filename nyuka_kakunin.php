@@ -41,6 +41,7 @@ $pdo = new PDO($dsn, $username, $password, $driver_options);
 $pdo->query('SET NAMES utf8;');
 
 //⑩書籍数をカウントするための変数を宣言し、値を0で初期化する
+$num = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
 foreach(/* ⑪の処理を書く */){
