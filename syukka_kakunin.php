@@ -44,7 +44,7 @@ $pdo->query('SET NAMES utf8;');
 $num = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
-foreach(/* ⑪の処理を書く */){
+foreach(/* ⑪の処理を書く */$_POST['books']){
 	/*
 	 * ⑫POSTの「stock」について⑩の変数の値を使用して値を取り出す。
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
