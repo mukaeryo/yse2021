@@ -97,12 +97,12 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 							//⑪extract変数を使用し、1レコードのデータを渡す。							
 							echo "<tr id='book'>";
 							echo "<td id='check'><input type='checkbox' name='books[]'value={$result['id']}></td>";
-							echo "<td id='id'>　{$result['id']}</td>";
+							echo "<td id='id'>{$result['id']}</td>";
 							echo "<td id='title'>{$result['title']}</td>";
 							echo "<td id='author'>{$result['author']}</td>";
 							echo "<td id='date'>{$result['salesDate']}</td>";
-							echo "<td id='price'>　{$result['price']}</td>";
-							echo "<td id='stock'>　{$result['stock']}</td>";
+							echo "<td id='price'>{$result['price']}</td>";
+							echo "<td id='stock'>{$result['stock']}</td>";
 
 							echo "</tr>";
 						}
