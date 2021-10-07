@@ -29,7 +29,11 @@ $Login_ErrorMessage="";
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
  */
+<<<<<<< HEAD
+if (isset($_POST['decision'])) {
+=======
 if (isset($_POST["decision"])) {
+>>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
 	/*
 	 * ③名前とパスワードが両方とも入力されているかを判定する。
 	 * 入力されていた場合はif文の中の処理を行う。
