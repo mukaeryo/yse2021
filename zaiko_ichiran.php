@@ -87,13 +87,8 @@ $pdo = new PDO($dsn, $username, $password, $driver_options);
 						extract(/*SQLの実行結果変数まち？　冨戸野*/);
 							
 							echo "<tr id='book'>";
-<<<<<<< HEAD
-							echo "<td id='check'><input type='checkbox' name='books[]'value=".$a['id']."></td>";
-							echo "<td id='id'>/* ⑬IDを表示する */</td>";
-=======
 							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
 							echo "<td id='id'>{$result['ID']}</td>";
->>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
 							echo "<td id='title'>/* ⑭titleを表示する */</td>";
 							echo "<td id='author'>/* ⑮authorを表示する */</td>";
 							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
