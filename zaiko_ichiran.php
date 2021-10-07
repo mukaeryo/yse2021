@@ -94,8 +94,7 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 						$stmt = $pdo->query( $sql );
 
 						while($result = $stmt->fetch( PDO::FETCH_ASSOC )){
-							//⑪extract変数を使用し、1レコードのデータを渡す。
-
+							//⑪extract変数を使用し、1レコードのデータを渡す。							
 							echo "<tr id='book'>";
 							echo "<td id='check'><input type='checkbox' name='books[]'value={$result['id']}></td>";
 							echo "<td id='id'>　{$result['id']}</td>";

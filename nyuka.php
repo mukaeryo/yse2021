@@ -35,6 +35,7 @@ $db_pass = "2021zaiko";	// パスワード
 
 $pdo = new PDO($db_dsn,$db_user,$db_pass);
 //⑦データベースで使用する文字コードを「UTF8」にする
+$pdo->query('SET NAMES utf8;');
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
 //if(/* ⑧の処理を行う */){
