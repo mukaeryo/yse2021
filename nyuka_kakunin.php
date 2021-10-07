@@ -36,6 +36,8 @@ if (/* ⑤の処理を書く */){
 
 //⑧データベースへ接続し、接続情報を変数に保存する
 $pdo = new PDO($dsn, $username, $password, $driver_options);
+$sql = 'SELECT * FROM contents';
+$stmt = $PDO->query($sql);
 
 //⑦データベースで使用する文字コードを「UTF8」にする
 $pdo->query('SET NAMES utf8;');
@@ -44,7 +46,7 @@ $pdo->query('SET NAMES utf8;');
 $num = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
-foreach(/* ⑪の処理を書く */$_POST['books']){
+foreach(/* ⑪の処理を書く */$stmt as $row){
 	/*
 	 * ⑫POSTの「stock」について⑩の変数の値を使用して値を取り出す。
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
