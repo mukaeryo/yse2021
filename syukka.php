@@ -28,12 +28,19 @@ if (/*isset($_SESSION["login"]) == FALSE*/){
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
+<<<<<<< HEAD
 //$pdo = new PDO($dsn, $username, $password, $driver_options);
 //$dsn = 'mysql:dbname=zaiko2021_yse;host=localhost;charset=UTF8';
 //$pdo = new PDO($dsn);
 
 //⑦データベースで使用する文字コードを「UTF8」にする
 //$pdo->query('SET NAMES utf8;');
+=======
+$pdo = new PDO($dsn, $username, $password, $driver_options);
+
+//⑦データベースで使用する文字コードを「UTF8」にする
+$pdo->query('SET NAMES utf8;');
+>>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
 /*$books = $_POST["books"];*/

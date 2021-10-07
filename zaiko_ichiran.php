@@ -19,6 +19,7 @@ if (/* ②の処理を書く */){
 }
 
 //⑤データベースへ接続し、接続情報を変数に保存する
+$pdo = new PDO($dsn, $username, $password, $driver_options);
 
 //⑥データベースで使用する文字コードを「UTF8」にする
 
@@ -83,10 +84,16 @@ if (/* ②の処理を書く */){
 						//⑩SQLの実行結果の変数から1レコードのデータを取り出す。レコードがない場合はループを終了する。
 						while(/* ⑩の処理を書く */){
 							//⑪extract変数を使用し、1レコードのデータを渡す。
-
+						extract(/*SQLの実行結果変数まち？　冨戸野*/);
+							
 							echo "<tr id='book'>";
+<<<<<<< HEAD
 							echo "<td id='check'><input type='checkbox' name='books[]'value=".$a['id']."></td>";
 							echo "<td id='id'>/* ⑬IDを表示する */</td>";
+=======
+							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
+							echo "<td id='id'>{$result['ID']}</td>";
+>>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
 							echo "<td id='title'>/* ⑭titleを表示する */</td>";
 							echo "<td id='author'>/* ⑮authorを表示する */</td>";
 							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
