@@ -85,7 +85,7 @@ if (/* ②の処理を書く */){
 							//⑪extract変数を使用し、1レコードのデータを渡す。
 
 							echo "<tr id='book'>";
-							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
+							echo "<td id='check'><input type='checkbox' name='books[]'value=".$a['id']."></td>";
 							echo "<td id='id'>/* ⑬IDを表示する */</td>";
 							echo "<td id='title'>/* ⑭titleを表示する */</td>";
 							echo "<td id='author'>/* ⑮authorを表示する */</td>";
