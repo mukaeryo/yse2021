@@ -13,15 +13,23 @@
 //①セッションを開始する
 
 //②SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if (/* ②の処理を書く */){
+//if (/* ②の処理を書く */){
 	//③SESSIONの「error2」に「ログインしてください」と設定する。
 	//④ログイン画面へ遷移する。
-}
+//}
 
 //⑤データベースへ接続し、接続情報を変数に保存する
-$pdo = new PDO($dsn, $username, $password, $driver_options);
+$db_type = "mysql";	// データベースの種類
+$db_host = "localhost";	// ホスト名
+$db_name = "zaiko2021_yse";	// データベース名
+$db_dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";// DSN
+$db_user = "zaiko2021_yse";	// ユーザー名
+$db_pass = "2021zaiko";	// パスワード
+
+$pdo = new PDO($db_dsn,$db_user,$db_pass);
 
 //⑥データベースで使用する文字コードを「UTF8」にする
+//mysql_query('SET NAMES utf8', $sql );
 
 //⑦書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
 ?>
@@ -45,9 +53,9 @@ $pdo = new PDO($dsn, $username, $password, $driver_options);
 				 * ⑧SESSIONの「success」にメッセージが設定されているかを判定する。
 				 * 設定されていた場合はif文の中に入る。
 				 */ 
-				if(/* ⑧の処理を書く */){
+				//if(/* ⑧の処理を書く */){
 					//⑨SESSIONの「success」の中身を表示する。
-				}
+				//}
 				?>
 			</div>
 			
@@ -82,18 +90,19 @@ $pdo = new PDO($dsn, $username, $password, $driver_options);
 					<tbody>
 						<?php
 						//⑩SQLの実行結果の変数から1レコードのデータを取り出す。レコードがない場合はループを終了する。
-						while(/* ⑩の処理を書く */){
-							//⑪extract変数を使用し、1レコードのデータを渡す。
-						extract(/*SQLの実行結果変数まち？　冨戸野*/);
-							
+						$sql = 'select * from books';
+						$stmt = $pdo->query( $sql );
+
+						while($result = $stmt->fetch( PDO::FETCH_ASSOC )){
+							//⑪extract変数を使用し、1レコードのデータを渡す。							
 							echo "<tr id='book'>";
-							echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
-							echo "<td id='id'>{$result['ID']}</td>";
-							echo "<td id='title'>/* ⑭titleを表示する */</td>";
-							echo "<td id='author'>/* ⑮authorを表示する */</td>";
-							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
-							echo "<td id='price'>/* ⑰priceを表示する */</td>";
-							echo "<td id='stock'>/* ⑱stockを表示する */</td>";
+							echo "<td id='check'><input type='checkbox' name='books[]'value={$result['id']}></td>";
+							echo "<td id='id'>{$result['id']}</td>";
+							echo "<td id='title'>{$result['title']}</td>";
+							echo "<td id='author'>{$result['author']}</td>";
+							echo "<td id='date'>{$result['salesDate']}</td>";
+							echo "<td id='price'>{$result['price']}</td>";
+							echo "<td id='stock'>{$result['stock']}</td>";
 
 							echo "</tr>";
 						}

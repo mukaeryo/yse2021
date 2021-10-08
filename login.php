@@ -14,22 +14,22 @@
 //⑥セッションを開始する
 session_start();
 
-//セッション変数にloginを登録
+//セッション変数
 $_SESSION["login"]=false;
+//$_SESSION["error2"]=""; //ログインしてないときにほかのページに飛んで行った時のものかな？
 
 //①名前とパスワードを入れる変数を初期化する
 $Login_Name="";
 $Login_Password="";
 
 //未入力メッセージ変数の初期化
-$Login_NullMessage="";
 $Login_ErrorMessage="";
-
+$Login_SeesionErrorMessage="";
 /*
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
  */
-if (isset($_POST['decision'])) {
+if (isset($_POST["decision"])) {
 	/*
 	 * ③名前とパスワードが両方とも入力されているかを判定する。
 	 * 入力されていた場合はif文の中の処理を行う。
@@ -40,7 +40,7 @@ if (isset($_POST['decision'])) {
 		$Login_Password=$_POST['pass'];
 	} else {
 		//⑤名前かパスワードが入力されていない場合は、「名前かパスワードが未入力です」という文言をメッセージを入れる変数に設定する
-		$Login_NullMessage='名前かパスワードが未入力です';
+		$Login_ErrorMessage='名前かパスワードが未入力です';
 	}
 }
 
@@ -59,9 +59,11 @@ if (!empty($_POST["name"])) {
 }
 
 //⑫SESSIONの「error2」に値が入っているか判定する。入っていた場合はif文の中に入る
-if (/* ⑫の処理を書く */) {
+if (isset($_SESSION["error2"])) {
 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する。
+	$Login_SeesionErrorMessage=$_SESSION["error2"];
 	//⑭SESSIONの「error2」にnullを入れる。
+	$_SESSION["error2"]=NULL;
 }
 
 ?>
@@ -77,10 +79,10 @@ if (/* ⑫の処理を書く */) {
 		<h1>ログイン</h1>
 		<?php
 		//⑮エラーメッセージの変数に入っている値を表示する
-		echo "<div id='error'>", /* ⑮の変数を書く */, "</div>";
+		echo "<div id='error'>", $Login_SeesionErrorMessage ,"</div>";
 		
 		//⑯メッセージの変数に入っている値を表示する
-		echo "<div id='msg'>", /* ⑯の変数を書く */, "</div>";
+		echo "<div id='msg'>", $Login_ErrorMessage ,"</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>
