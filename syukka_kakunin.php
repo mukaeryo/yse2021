@@ -80,8 +80,11 @@ foreach($books as $_book){
 	 */
 	//if (/* ⑫の処理を書く */) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
+		array_push($error_message, '数値以外が入力されています');
 		//⑭「include」を使用して「syukka.php」を呼び出す。
+		include"syukka.php";
 		//⑮「exit」関数で処理を終了する。
+		exit('プログラムを終了します');
 	//}
 
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
@@ -91,8 +94,9 @@ foreach($books as $_book){
 	$total = $bookId['stock'] + $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が0未満か判定する。0未満の場合はif文の中に入る。
-	//if(/* ⑱の処理を行う */){
+	//if(/* ⑱の処理を行う */$total<=0){
 		//⑲SESSIONの「error」に「出荷する個数が在庫数を超えています」と設定する。
+		array_push($error_message, '出荷する個数が在庫数を超えています');
 		//⑳「include」を使用して「syukka.php」を呼び出す。
 		include"syukka.php";
 		//㉑「exit」関数で処理を終了する。

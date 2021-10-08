@@ -79,8 +79,11 @@ foreach($books as $_book){
 	 */
 	//if (/* ⑫の処理を書く */) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
+		array_push($error_message, '数値以外が入力されています');
 		//⑭「include」を使用して「nyuka.php」を呼び出す。
+		include"nyuka.php";
 		//⑮「exit」関数で処理を終了する。
+		exit('プログラムを終了します');
 	//}
 
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
@@ -90,8 +93,9 @@ foreach($books as $_book){
 	$total = $bookId['stock'] + $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が100を超えているか判定する。超えていた場合はif文の中に入る。
-	//if(/* ⑱の処理を行う */){
+	//if(/* ⑱の処理を行う */$total>=100){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
+		array_push($error_message, '最大在庫数を超える数は入力できません');
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
 		include"nyuka.php";
 		//㉑「exit」関数で処理を終了する。
