@@ -93,7 +93,9 @@ foreach($books as $_book){
 	//if(/* ⑱の処理を行う */){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
+		include"nyuka.php";
 		//㉑「exit」関数で処理を終了する。
+		exit('プログラムを終了します');
 	//}
 	
 	//㉒ ⑩で宣言した変数をインクリメントで値を1増やす。
