@@ -16,7 +16,6 @@ session_start();
 
 //セッション変数
 $_SESSION["login"]=false;
-//$_SESSION["error2"]=""; //ログインしてないときにほかのページに飛んで行った時のものかな？
 
 //①名前とパスワードを入れる変数を初期化する
 $Login_Name="";
