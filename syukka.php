@@ -41,9 +41,9 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 $pdo->query('SET NAMES utf8;');
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-if($_POST["books"] == ""){
+if(empty($_POST["books"])){
 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
-	$_SESSION['success']='出荷する商品が選択されていません';
+	$_SESSION["success"]="出荷する商品が選択されていません";
 
 	//⑩在庫一覧画面へ遷移する。
 	header("Location:zaiko_ichiran.php");
@@ -55,8 +55,6 @@ function getId($id,$con){
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
-	//$sql = "SELECT * FROM books WHERE id = $id";
-	//$result = $con->query($sql);
 
 	$sql = "select * from books where id = " .$id;
 	$stmt = $con->query( $sql );
@@ -96,7 +94,7 @@ function getId($id,$con){
 		 * ⑬SESSIONの「error」にメッセージが設定されているかを判定する。
 		 * 設定されていた場合はif文の中に入る。
 		 */ 
-		if($_SESSION["error"]){
+		if(!empty($_SESSION["error"])){
 			//⑭SESSIONの「error」の中身を表示する。
 			echo $_SESSION["error"];
 		}
