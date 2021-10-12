@@ -52,6 +52,7 @@ $db_user = "zaiko2021_yse";	// ユーザー名
 $db_pass = "2021zaiko";	// パスワード
 $pdo = new PDO($db_dsn,$db_user,$db_pass);
 //⑨データベースで使用する文字コードを「UTF8」にする
+$pdo->query('SET NAMES utf8;');
 
 //⑩書籍数をカウントするための変数を宣言し、値を0で初期化する
 $bookcnt = 0;
