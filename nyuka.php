@@ -92,7 +92,7 @@ function getId($id,$con){
 			 * ⑬SESSIONの「error」にメッセージが設定されているかを判定する。
 			 * 設定されていた場合はif文の中に入る。
 			 */ 
-			if($_SESSION["error"]){
+			if(!empty($_SESSION["error"])){
 				//⑭SESSIONの「error」の中身を表示する。
 				echo $_SESSION["error"];
 			}
