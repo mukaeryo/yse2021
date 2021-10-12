@@ -83,7 +83,7 @@ foreach($books as $_book){
 	//⑱ ⑰の値が100を超えているか判定する。超えていた場合はif文の中に入る。
 	//if(/* ⑱の処理を行う */$total>=100){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
-		array_push($error_message, '最大在庫数を超える数は入力できません');
+		$_SESSION["error"]="最大在庫数を超える数は入力できません";
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
 		include"nyuka.php";
 		//㉑「exit」関数で処理を終了する。
@@ -116,7 +116,7 @@ if(isset($_POST['add'])&&$_POST['add'] == "ok"){
 	}
 
 	//㉚SESSIONの「success」に「入荷が完了しました」と設定する。
-	array_push($success, '入荷が完了しました');
+	$_SESSION["success"]="入荷が完了しました";
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
 	header("Location:zaiko_ichiran.php");
 }
