@@ -16,7 +16,7 @@ session_start();
 
 //セッション変数
 $_SESSION["login"]=false;
-$_SESSION["error2"]=""; //ログインしてないときにほかのページに飛んで行った時のものかな？
+//$_SESSION["error2"]=""; //ログインしてないときにほかのページに飛んで行った時のものかな？
 
 //①名前とパスワードを入れる変数を初期化する
 $Login_Name="";
@@ -29,11 +29,7 @@ $Login_SeesionErrorMessage="";
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
  */
-<<<<<<< HEAD
-if (isset($_POST['decision'])) {
-=======
 if (isset($_POST["decision"])) {
->>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
 	/*
 	 * ③名前とパスワードが両方とも入力されているかを判定する。
 	 * 入力されていた場合はif文の中の処理を行う。
@@ -55,7 +51,7 @@ if (!empty($_POST["name"])) {
 		//⑨SESSIONに名前を設定し、SESSIONの「login」フラグをtrueにする
 		$_SESSION["login"]=true;
 		//⑩在庫一覧画面へ遷移する
-		//header("Location:zaiko_ichiran.php");
+		header("Location:zaiko_ichiran.php");
 	}else{
 		//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
 	    $Login_ErrorMessage='ユーザー名かパスワードが間違っています';

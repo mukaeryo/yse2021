@@ -19,37 +19,26 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if (/*isset($_SESSION["login"]) == FALSE*/){
+if (isset($_SESSION["login"]) == FALSE){
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
-	/*echo $_SESSION['error2']."ログインしてください";*/
+	$_SESSION['error2']="ログインしてください";
 
 	//⑤ログイン画面へ遷移する。
-	/*header("Location: login.php");*/
+	header("Location: login.php");
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
-<<<<<<< HEAD
-//$pdo = new PDO($dsn, $username, $password, $driver_options);
-//$dsn = 'mysql:dbname=zaiko2021_yse;host=localhost;charset=UTF8';
-//$pdo = new PDO($dsn);
-
 //⑦データベースで使用する文字コードを「UTF8」にする
-//$pdo->query('SET NAMES utf8;');
-=======
-$pdo = new PDO($dsn, $username, $password, $driver_options);
-
-//⑦データベースで使用する文字コードを「UTF8」にする
-$pdo->query('SET NAMES utf8;');
->>>>>>> 74fd4ccfb0e3fc0e22e20aff773f15ec35cc75e3
+$pdo = new PDO("mysql:host=localhost;dbname=zaiko2021_yse;charset=utf8;","zaiko2021","2021zaiko");
+$st=$pdo->query("SELECT * FROM books");
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-/*$books = $_POST["books"];*/
-if(/*empty($books)*/){
+if(!@($_POST["books"])){
 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
-	/*echo $_SESSION['success']."出荷する商品が選択されていません";*/
+	$_SESSION['success']="出荷する商品が選択されていません";
 
 	//⑩在庫一覧画面へ遷移する。
-	/*header("Location: zaiko_ichiran.php");*/
+	header("Location: zaiko_ichiran.php");
 
 }
 
@@ -59,11 +48,13 @@ function getId($id,$con){
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
-	/*$sql = "SELECT * FROM books WHERE books.id = $id";*/
-	/*$result = $con->query($sql);*/
+	$pdo = new PDO("mysql:host=localhost;dbname=zaiko2021_yse;charset=utf8;","zaiko2021","2021zaiko");
+	$st=$pdo->query("SELECT * FROM books WHERE id =$id");
 
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
-
+	while($row=$st->fetch()){
+		return $row;
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -97,8 +88,9 @@ function getId($id,$con){
 		 * ⑬SESSIONの「error」にメッセージが設定されているかを判定する。
 		 * 設定されていた場合はif文の中に入る。
 		 */ 
-		if(/*13の処理を入れる*/){
+		if($_SESSION["error"]){
 			//⑭SESSIONの「error」の中身を表示する。
+			echo $_SESSION["error"];
 		}
 		?>
 		</div>
@@ -119,9 +111,9 @@ function getId($id,$con){
 				/*
 				 * ⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
 				 */
-				foreach(/*$_POST['books'] as $books*/){
+				foreach($_POST['books'] as $books){
 					// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
-					$a = getId($books,$pdo);
+					$a = getId($books);
 				?>
 				<input type="hidden" value="<?php echo	$a['id']/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]">
 				<tr>
