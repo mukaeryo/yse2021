@@ -118,7 +118,7 @@ if(isset($_POST['add'])&&$_POST['add'] == "ok"){
 	}
 
 	//㉚SESSIONの「success」に「入荷が完了しました」と設定する。
-	array_push($success, '入荷が完了しました');
+	$_SESSION["success"]="入荷が完了しました";
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
 	header("Location: login.php");
 }
