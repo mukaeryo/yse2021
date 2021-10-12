@@ -11,12 +11,15 @@
 */
 
 //①セッションを開始する
+session_start();
 
 //②SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-//if (/* ②の処理を書く */){
+if ($_SESSION["login"]==false){
 	//③SESSIONの「error2」に「ログインしてください」と設定する。
+	$_SESSION["error2"]="ログインしてください";
 	//④ログイン画面へ遷移する。
-//}
+	header("Location:login.php");
+}
 
 //⑤データベースへ接続し、接続情報を変数に保存する
 $db_type = "mysql";	// データベースの種類
@@ -94,7 +97,8 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 						$stmt = $pdo->query( $sql );
 
 						while($result = $stmt->fetch( PDO::FETCH_ASSOC )){
-							//⑪extract変数を使用し、1レコードのデータを渡す。							
+							//⑪extract変数を使用し、1レコードのデータを渡す。
+							extract($result);
 							echo "<tr id='book'>";
 							echo "<td id='check'><input type='checkbox' name='books[]'value={$result['id']}></td>";
 							echo "<td id='id'>{$result['id']}</td>";
