@@ -44,6 +44,12 @@ if ($_SESSION["login"]==false){
 }
 
 //⑧データベースへ接続し、接続情報を変数に保存する
+<<<<<<< HEAD
+$pdo = new PDO($dsn, $username, $password, $driver_options);
+$sql = 'SELECT * FROM contents';
+$stmt = $PDO->query($sql);
+
+=======
 $db_type = "mysql";	// データベースの種類
 $db_host = "localhost";	// ホスト名
 $db_name = "zaiko2021_yse";	// データベース名
@@ -52,15 +58,23 @@ $db_user = "zaiko2021_yse";	// ユーザー名
 $db_pass = "2021zaiko";	// パスワード
 
 $pdo = new PDO($db_dsn,$db_user,$db_pass);
+>>>>>>> 6d004e4bd94a13fc9702065a6d7c8cbf15326789
 //⑦データベースで使用する文字コードを「UTF8」にする
 
 //⑩書籍数をカウントするための変数を宣言し、値を0で初期化する
+<<<<<<< HEAD
+$num = 0;
+
+//⑪POSTの「books」から値を取得し、変数に設定する。
+foreach(/* ⑪の処理を書く */$stmt as $row){
+=======
 $bookcnt = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
 $books = $_POST['books'];
 $newStocks = $_POST['stock'];
 foreach($books as $_book){
+>>>>>>> 6d004e4bd94a13fc9702065a6d7c8cbf15326789
 	/*
 	 * ⑫POSTの「stock」について⑩の変数の値を使用して値を取り出す。
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
@@ -68,8 +82,11 @@ foreach($books as $_book){
 	 */
 	//if (/* ⑫の処理を書く */) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
+		array_push($error_message, '数値以外が入力されています');
 		//⑭「include」を使用して「syukka.php」を呼び出す。
+		include"syukka.php";
 		//⑮「exit」関数で処理を終了する。
+		exit('プログラムを終了します');
 	//}
 
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
@@ -79,10 +96,13 @@ foreach($books as $_book){
 	$total = $bookId['stock'] + $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が0未満か判定する。0未満の場合はif文の中に入る。
-	//if(/* ⑱の処理を行う */){
+	//if(/* ⑱の処理を行う */$total<=0){
 		//⑲SESSIONの「error」に「出荷する個数が在庫数を超えています」と設定する。
+		array_push($error_message, '出荷する個数が在庫数を超えています');
 		//⑳「include」を使用して「syukka.php」を呼び出す。
+		include"syukka.php";
 		//㉑「exit」関数で処理を終了する。
+		exit('プログラムを終了します');
 	//}
 	
 	//㉒ ⑩で宣言した変数をインクリメントで値を1増やす。
@@ -111,7 +131,9 @@ if(isset($_POST['add'])&&$_POST['add'] == "ok"){
 	}
 
 	//㉚SESSIONの「success」に「入荷が完了しました」と設定する。
+	array_push($success, '入荷が完了しました');
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
+	header("Location: login.php");
 }
 ?>
 <!DOCTYPE html>

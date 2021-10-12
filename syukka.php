@@ -54,9 +54,9 @@ $pdo = new PDO("mysql:host=localhost;dbname=zaiko2021_yse;charset=utf8;","zaiko2
 $st=$pdo->query("SELECT * FROM books");
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-if(!@($_POST["books"])){
+if($_POST["books"] == ""){
 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
-	$_SESSION['success']="出荷する商品が選択されていません";
+	$_SESSION['success']='出荷する商品が選択されていません';
 
 	//⑩在庫一覧画面へ遷移する。
 	header("Location:zaiko_ichiran.php");
