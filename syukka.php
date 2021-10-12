@@ -39,6 +39,7 @@ $books = $_POST["books"];
 if(empty($books)){
 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
 	echo $_SESSION['success']."出荷する商品が選択されていません";
+}
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
 if (isset($_SESSION["login"]) == FALSE){
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
