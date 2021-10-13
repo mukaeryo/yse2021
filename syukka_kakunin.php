@@ -9,6 +9,7 @@
 */
 
 //①セッションを開始する
+session_start();
 
 function getByid($id,$con){
 	/* 
@@ -56,7 +57,6 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 $pdo->query('SET NAMES utf8;');
 
 //⑩書籍数をカウントするための変数を宣言し、値を0で初期化する
-
 $bookcnt = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
@@ -68,14 +68,14 @@ foreach($books as $_book){
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
 	 * 半角数字以外の文字が入っていた場合はif文の中に入る。
 	 */
-	//if (/* ⑫の処理を書く */) {
+	if (is_numeric($newStocks)) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
 		$_SESSION["error"]="数値以外が入力されています";
 		//⑭「include」を使用して「syukka.php」を呼び出す。
 		include"syukka.php";
 		//⑮「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
-	//}
+	}
 
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
 	$bookId = getByid($_book,$pdo);
@@ -84,14 +84,14 @@ foreach($books as $_book){
 	$total = $bookId['stock'] + $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が0未満か判定する。0未満の場合はif文の中に入る。
-	//if(/* ⑱の処理を行う */$total<=0){
+	if($total<=0){
 		//⑲SESSIONの「error」に「出荷する個数が在庫数を超えています」と設定する。
 		$_SESSION["error"]="出荷する個数が在庫数を超えています";
 		//⑳「include」を使用して「syukka.php」を呼び出す。
 		include"syukka.php";
 		//㉑「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
-	//}
+	}
 	
 	//㉒ ⑩で宣言した変数をインクリメントで値を1増やす。
 	$bookcnt++;
@@ -119,9 +119,9 @@ if(isset($_POST['add'])&&$_POST['add'] == "ok"){
 	}
 
 	//㉚SESSIONの「success」に「入荷が完了しました」と設定する。
-	$_SESSION["success"]="入荷が完了しました";
+	$_SESSION["success"]="出荷が完了しました";
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
-	header("Location: login.php");
+	header("Location:zaiko_ichiran.php");
 }
 ?>
 <!DOCTYPE html>

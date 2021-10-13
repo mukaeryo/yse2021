@@ -27,7 +27,6 @@ if ($_SESSION["login"]==false){
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
-
 $db_type = "mysql";	// データベースの種類
 $db_host = "localhost";	// ホスト名
 $db_name = "zaiko2021_yse";	// データベース名

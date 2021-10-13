@@ -32,7 +32,7 @@ $db_pass = "2021zaiko";	// パスワード
 $pdo = new PDO($db_dsn,$db_user,$db_pass);
 
 //⑥データベースで使用する文字コードを「UTF8」にする
-//mysql_query('SET NAMES utf8', $sql );
+$pdo->query('SET NAMES utf8;');
 
 //⑦書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
 ?>
@@ -56,9 +56,10 @@ $pdo = new PDO($db_dsn,$db_user,$db_pass);
 				 * ⑧SESSIONの「success」にメッセージが設定されているかを判定する。
 				 * 設定されていた場合はif文の中に入る。
 				 */ 
-				//if(/* ⑧の処理を書く */){
+				if(isset($_SESSION["success"])){
 					//⑨SESSIONの「success」の中身を表示する。
-				//}
+					echo $_SESSION["success"];
+				}
 				?>
 			</div>
 			
