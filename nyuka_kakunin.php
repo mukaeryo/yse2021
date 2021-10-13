@@ -71,7 +71,7 @@ foreach($books as $_book){
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
 		$_SESSION["error"]="数値以外が入力されています";
 		//⑭「include」を使用して「nyuka.php」を呼び出す。
-		include"nyuka.php";
+		include 'nyuka.php';
 		//⑮「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
 	}
@@ -87,7 +87,7 @@ foreach($books as $_book){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
 		$_SESSION["error"]="最大在庫数を超える数は入力できません";
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
-		include"nyuka.php";
+		include 'nyuka.php';
 		//㉑「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
 	}
