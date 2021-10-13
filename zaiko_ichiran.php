@@ -101,6 +101,7 @@ $pdo->query('SET NAMES utf8;');
 							//⑪extract変数を使用し、1レコードのデータを渡す。
 							extract($result);
 							echo "<tr id='book'>";
+<<<<<<< HEAD
 							echo "<td id='check'><input type='checkbox' name='books[]'value={$result['id']}></td>";
 							echo "<td id='id'>{$result['id']}</td>";
 							echo "<td id='title'>{$result['title']}</td>";
@@ -108,6 +109,15 @@ $pdo->query('SET NAMES utf8;');
 							echo "<td id='date'>{$result['salesDate']}</td>";
 							echo "<td id='price'>{$result['price']}</td>";
 							echo "<td id='stock'>{$result['stock']}</td>";
+=======
+							echo "<td id='check'><input type='checkbox' name='books[]'value=".$a['id']."></td>";
+							echo "<td id='id'>/* ⑬IDを表示する */</td>";
+							echo "<td id='title'>/* ⑭titleを表示する */</td>";
+							echo "<td id='author'>/* ⑮authorを表示する */</td>";
+							echo "<td id='date'>/* ⑯salesDateを表示する */</td>";
+							echo "<td id='price'>/* ⑰priceを表示する */</td>";
+							echo "<td id='stock'>/* ⑱stockを表示する */</td>";
+>>>>>>> d328e6f86060fc0e10c766466b9d6159406c10e3
 
 							echo "</tr>";
 						}
