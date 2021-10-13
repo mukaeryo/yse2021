@@ -9,6 +9,7 @@
 */
 
 //①セッションを開始する
+session_start();
 
 function getByid($id,$con){
 	/* 
@@ -68,7 +69,7 @@ foreach($books as $_book){
 	 */
 	//if (/* ⑫の処理を書く */) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
-		array_push($error_message, '数値以外が入力されています');
+		$_SESSION["error"]="数値以外が入力されています";
 		//⑭「include」を使用して「nyuka.php」を呼び出す。
 		include 'nyuka.php';
 		//⑮「exit」関数で処理を終了する。
