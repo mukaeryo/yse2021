@@ -68,7 +68,7 @@ foreach($books as $_book){
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
 	 * 半角数字以外の文字が入っていた場合はif文の中に入る。
 	 */
-	if (is_numeric($newStocks)) {
+	if (!is_numeric($_POST['stock'][$bookcnt])) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
 		$_SESSION["error"]="数値以外が入力されています";
 		//⑭「include」を使用して「syukka.php」を呼び出す。
@@ -81,10 +81,10 @@ foreach($books as $_book){
 	$bookId = getByid($_book,$pdo);
 
 	//⑰ ⑯で取得した書籍の情報の「stock」と、⑩の変数を元にPOSTの「stock」から値を取り出して書籍情報の「stock」から値を引いた値を変数に保存する。
-	$total = $bookId['stock'] + $newStocks[$bookcnt];
+	$total = $bookId['stock'] - $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が0未満か判定する。0未満の場合はif文の中に入る。
-	if($total<=0){
+	if($total<0){
 		//⑲SESSIONの「error」に「出荷する個数が在庫数を超えています」と設定する。
 		$_SESSION["error"]="出荷する個数が在庫数を超えています";
 		//⑳「include」を使用して「syukka.php」を呼び出す。

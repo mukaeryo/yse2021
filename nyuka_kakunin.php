@@ -67,7 +67,7 @@ foreach($books as $_book){
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
 	 * 半角数字以外の文字が入っていた場合はif文の中に入る。
 	 */
-	if (is_numeric($newStocks)) {
+	if (!is_numeric($_POST['stock'][$bookcnt])) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
 		$_SESSION["error"]="数値以外が入力されています";
 		//⑭「include」を使用して「nyuka.php」を呼び出す。
@@ -83,7 +83,7 @@ foreach($books as $_book){
 	$total = $bookId['stock'] + $newStocks[$bookcnt];
 
 	//⑱ ⑰の値が100を超えているか判定する。超えていた場合はif文の中に入る。
-	if($total>=100){
+	if($total>100){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
 		$_SESSION["error"]="最大在庫数を超える数は入力できません";
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
