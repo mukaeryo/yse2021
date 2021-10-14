@@ -16,14 +16,10 @@ session_start();
 
 //セッション変数
 $_SESSION["login"]=false;
-
-//①名前とパスワードを入れる変数を初期化する
-$Login_Name="";
-$Login_Password="";
-
-//未入力メッセージ変数の初期化
+$_SESSION["account_name"]="";
+$_SESSION["password"]="";
 $Login_ErrorMessage="";
-$Login_SeesionErrorMessage="";
+$_SESSION["error3"]="";
 /*
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
@@ -35,32 +31,32 @@ if (isset($_POST["decision"])) {
 	 */
 	if (!empty($_POST["name"]) && !empty($_POST['pass'])) {
 		//④名前とパスワードにPOSTで送られてきた名前とパスワードを設定する
-		$Login_Name=$_POST["name"];
-		$Login_Password=$_POST['pass'];
+		$_SESSION["account_name"]=$_POST["name"];
+		$_SESSION["password"]=$_POST['pass'];
 	} else {
 		//⑤名前かパスワードが入力されていない場合は、「名前かパスワードが未入力です」という文言をメッセージを入れる変数に設定する
-		$Login_ErrorMessage='名前かパスワードが未入力です';
+		$_SESSION["error3"]="名前かパスワードが未入力です";
 	}
 }
 
 //⑦名前が入力されているか判定する。入力されていた場合はif文の中に入る
-if (!empty($_POST["name"])) {
+if (!empty($_POST["name"]) && !empty($_POST['pass'])) {
 	//⑧名前に「yse」、パスワードに「2021」と設定されているか確認する。設定されていた場合はif文の中に入る
-	if ($Login_Name=="yse" && $Login_Password=='2021'){
+	if ($_SESSION["account_name"]=="yse" && $_SESSION["password"]=='2021'){
 		//⑨SESSIONに名前を設定し、SESSIONの「login」フラグをtrueにする
 		$_SESSION["login"]=true;
 		//⑩在庫一覧画面へ遷移する
 		header("Location:zaiko_ichiran.php");
 	}else{
 		//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
-	    $Login_ErrorMessage='ユーザー名かパスワードが間違っています';
+	    $_SESSION["error3"]='ユーザー名かパスワードが間違っています';
 	}
 }
 
 //⑫SESSIONの「error2」に値が入っているか判定する。入っていた場合はif文の中に入る
 if (isset($_SESSION["error2"])) {
 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する。
-	$Login_SeesionErrorMessage=$_SESSION["error2"];
+	$Login_ErrorMessage=$_SESSION["error2"];
 	//⑭SESSIONの「error2」にnullを入れる。
 	$_SESSION["error2"]=NULL;
 }
@@ -78,7 +74,7 @@ if (isset($_SESSION["error2"])) {
 		<h1>ログイン</h1>
 		<?php
 		//⑮エラーメッセージの変数に入っている値を表示する
-		echo "<div id='error'>", $Login_SeesionErrorMessage ,"</div>";
+		echo "<div id='error'>", $_SESSION["error3"] ,"</div>";
 		
 		//⑯メッセージの変数に入っている値を表示する
 		echo "<div id='msg'>", $Login_ErrorMessage ,"</div>";
