@@ -19,7 +19,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if ($_SESSION["login"]==false){
+if ($_SESSION["login"] == false){
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
 	$_SESSION["error2"]="ログインしてください";
 	//⑤ログイン画面へ遷移する。
@@ -54,6 +54,8 @@ function getId($id,$con){
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
+	/*$sql = "SELECT * FROM books WHERE books.id = $id";*/
+	/*$result = $con->query($sql);*/
 
 	$sql = "select * from books where id = " .$id;
 	$stmt = $con->query( $sql );
