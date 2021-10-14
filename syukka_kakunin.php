@@ -76,6 +76,9 @@ foreach($books as $_book){
 		//⑮「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
 	}
+	else{
+		$_SESSION["error"] = NULL;
+	}
 
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
 	$bookId = getByid($_book,$pdo);
@@ -91,6 +94,9 @@ foreach($books as $_book){
 		include 'syukka.php';
 		//㉑「exit」関数で処理を終了する。
 		exit('プログラムを終了します');
+	}
+	else{
+		$_SESSION["error"] = NULL;
 	}
 	
 	//㉒ ⑩で宣言した変数をインクリメントで値を1増やす。
