@@ -18,8 +18,10 @@ session_start();
 $_SESSION["login"]=false;
 $_SESSION["account_name"]="";
 $_SESSION["password"]="";
+
+//エラーメッセージ初期化
 $Login_ErrorMessage="";
-$_SESSION["error3"]="";
+
 /*
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
@@ -35,7 +37,7 @@ if (isset($_POST["decision"])) {
 		$_SESSION["password"]=$_POST['pass'];
 	} else {
 		//⑤名前かパスワードが入力されていない場合は、「名前かパスワードが未入力です」という文言をメッセージを入れる変数に設定する
-		$_SESSION["error3"]="名前かパスワードが未入力です";
+		$Login_ErrorMessage="名前かパスワードが未入力です";
 	}
 }
 
@@ -49,7 +51,7 @@ if (!empty($_POST["name"]) && !empty($_POST['pass'])) {
 		header("Location:zaiko_ichiran.php");
 	}else{
 		//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
-	    $_SESSION["error3"]='ユーザー名かパスワードが間違っています';
+	    $Login_ErrorMessage='ユーザー名かパスワードが間違っています';
 	}
 }
 
@@ -74,10 +76,10 @@ if (isset($_SESSION["error2"])) {
 		<h1>ログイン</h1>
 		<?php
 		//⑮エラーメッセージの変数に入っている値を表示する
-		echo "<div id='error'>", $_SESSION["error3"] ,"</div>";
+		echo "<div id='error'>",$Login_ErrorMessage,"</div>";
 		
 		//⑯メッセージの変数に入っている値を表示する
-		echo "<div id='msg'>", $Login_ErrorMessage ,"</div>";
+		//echo "<div id='msg'>",$Login_ErrorMessage,"</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>
