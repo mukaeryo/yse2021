@@ -59,6 +59,9 @@ $pdo->query('SET NAMES utf8;');
 $bookcnt = 0;
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
+if(empty($_POST["books"])||empty($_POST["stock"])){
+	header("Location:zaiko_ichiran.php");
+}
 $books = $_POST['books'];
 $newStocks = $_POST['stock'];
 foreach($books as $_book){
